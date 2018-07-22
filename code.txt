@@ -1,0 +1,20 @@
+//ghep anh thanh video//
+ffmpeg -framerate 0.1 -start_number 01 -i %02d.png out.avi
+ffmpeg -framerate 0.2 -start_number 01 -i %02d.jpg -vf format=yuv420p out.mp4
+
+//Ghep 2 file mp3//
+ffmpeg -i music1.mp3 -i music2.mp3 -filter_complex amix=inputs=2:duration=longest:dropout_transition=3 music.mp3
+
+//Add music vao video//
+ffmpeg -y -i music.mp3 -i out.avi -codec copy -shortest -preset superfast out_music.avi
+
+ffmpeg -y -i music.mp3 -i out.mp4 -codec copy -shortest -preset superfast out_music.mp4
+
+//Convert to avi//
+ffmpeg -y -i outro.mp4 -vcodec libx264 -pix_fmt yuv420p -r 30 -g 60 -b:v 1400k -profile:v main -level 3.1 -acodec libmp3lame -b:a 128k -ar 44100 -f avi -preset superfast outro.avi
+
+//Ghép main - outro
+
+//chen logo
+ffmpeg -i out_music.avi -i logo.png -filter_complex "overlay=0:0" out_music_logo.avi
+ffmpeg -i out_music.mp4 -i logo.png -filter_complex "overlay=0:0" out_music_logo.mp4
