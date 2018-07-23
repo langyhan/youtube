@@ -1,9 +1,9 @@
-import os, fnmatch, sys
+import os, fnmatch
 count = 0
 array = []
 dir_folder =""
-vid_type = 1 #avi
-vid_name = sys.argv[1]
+#vid_type = 1 #avi
+#vid_name = sys.argv[1]
 cmd=""
 data_config = open('config.txt',"r")
 for line in data_config:
@@ -22,5 +22,5 @@ for line in data_config:
             if old_name != new_name:
                 os.rename(dir_folder+"\\"+old_name,dir_folder+"\\"+new_name)
     # cmd = "C:\\Users\\dungdt5\\Desktop\\truyen\\run_vr1.bat " + '"{}"'.format(dir_folder) + " " + str(vid_type)
-    cmd = "gen_vid.bat " + '"{}"'.format(dir_folder) + " " + str(vid_type) + " " + str(vid_name)
-    os.system(cmd)
+    #cmd = "gen_vid.bat " + '"{}"'.format(dir_folder) + " " + str(vid_type) + " " + str(vid_name)
+    #os.system(cmd)
